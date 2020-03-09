@@ -11,9 +11,13 @@ DEG=10
 
 
 
-def ReactRes(C):# Calculates Reactive Ressistance
-    Xc= (1/(2*math.pi*f*C))
-    return Xc
+def ReactRes(C):# Calculates Reactive 
+    if C != 0:
+        Xc= (1/(2*math.pi*f*C))
+        return Xc
+    else:
+        Xc=0
+        return Xc
     
 def InductRes(L):# Calculates Inductive Ressistance
     Xl= (2*math.pi*f*L)
@@ -32,8 +36,13 @@ Z= Impedence(ReactRes(C),InductRes(L),R)
 
 #Calculates Phase Angle
 def PhaseAng(Xc,Xl,R):
-    Phase_c=float(math.atan((Xl-Xc)/R))
-    return Phase_c
+    if R != 0:
+        Phase_c=float(math.atan((Xl-Xc)/R))
+        return Phase_c
+    else:
+        Phase_c=float(90.0)
+        return Phase_c
+    
 #Phase Angle Without Capacitor
 def PhaseNoC(Xl,R):
     Phase_noC=float(math.atan((Xl)/R))
@@ -71,4 +80,4 @@ def turn_to_radians(DEG):
 
 #Cosinus coordinates
 
-print ReactRes(C)
+print ReactRes(C) 
